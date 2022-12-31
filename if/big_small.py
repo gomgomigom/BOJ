@@ -49,19 +49,31 @@
 #     y = y - 45
 # print(x, y)
 
+# a = list(map(int, input().split()))
+# t = int(input())
+# h, m = a
+# if t >= 60:
+#     h += t // 60
+#     t = t % 60
+#     if h >= 24:
+#         h = h % 24
+# if m + t >= 60:
+#     h += 1
+#     m = m + t - 60
+#     if h == 24:
+#         h = 0
+# else:
+#     m = m + t
+# print("%d %d" % (h, m))
+# #
+
 a = list(map(int, input().split()))
-t = int(input())
-h, m = a
-if t >= 60:
-    h += t // 60
-    t = t % 60
-    if h >= 24:
-        h = h % 24
-if m + t >= 60:
-    h += 1
-    m = m + t - 60
-    if h == 24:
-        h = 0
+s = set()
+length = len(set(a))
+if length == 1:
+    print(10000 + max(a) * 1000)
+elif length == 2:
+    dup = list({x for x in a if x in s or (s.add(x) or False)})
+    print(1000 + dup[0] * 100)
 else:
-    m = m + t
-print("%d %d" % (h, m))
+    print(max(a) * 100)
