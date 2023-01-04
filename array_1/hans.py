@@ -94,3 +94,41 @@
 # word = re.sub("\*", "", word)
 # count += len(word)
 # print(count)
+# # ------------------------------------------------------------
+# import sys
+# import re
+
+# length = int(input())
+# word_list = [i.rstrip() for i in sys.stdin.readlines()]
+# discontinue_count = 0
+# for word in word_list:
+#     for alphabet in word:
+#         discontinue = re.search(rf"{alphabet}+[^{alphabet}]+{alphabet}", word)
+#         if bool(discontinue) is True:
+#             discontinue_count += 1
+#             break
+# print(length - discontinue_count)
+# # ------------------------------------------------------------
+# A, B, C = map(int, input().split())
+# ea = 0
+
+
+# def cal(A, B, C):
+#     delta = B - C
+#     if delta >= 0:
+#         return "-1"
+#     else:
+#         return (A // abs(delta)) + 1
+
+
+# print(cal(A, B, C))
+# # ------------------------------------------------------------
+num = int(input())
+
+delta = 6
+count = 1
+n = 1
+while num > n:
+    n = n + count * delta
+    count += 1
+print(count)
