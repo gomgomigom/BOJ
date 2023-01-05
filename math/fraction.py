@@ -37,9 +37,46 @@
 #     numerator = li[index] - (denominator - 1)
 # print(f"{numerator}/{denominator}")
 # ###############################################
-import math
+# import math
 
-up, down, hight = map(int, input().split())
+# up, down, hight = map(int, input().split())
 
-day = math.ceil((hight - up) / (up - down)) + 1
-print(day)
+# day = math.ceil((hight - up) / (up - down)) + 1
+# print(day)
+# # ###############################################
+# import sys
+
+# case = int(input())
+# li = [[*map(int, i.split())] for i in sys.stdin.readlines()]
+
+# for i in li:
+#     H, W, N = i
+#     y = N % H
+#     x = (N // H) + 1
+#     if y == 0:
+#         y = H
+#         x = N // H
+#     print(f"{y}{x:0>2}")
+# ####################################
+t = int(input())
+
+
+def person(floor, room):
+    pre_li = [i for i in range(1, 15)]
+    for i in range(floor):
+        sum = 0
+        for index, j in enumerate(pre_li):
+            sum += j
+            pre_li[index] = sum
+    room_index = room - 1
+    print(pre_li[room_index])
+
+
+for i in range(t):
+    floor = int(input())
+    room = int(input())
+
+    if room == 1:
+        print(1)
+    else:
+        person(floor, room)
