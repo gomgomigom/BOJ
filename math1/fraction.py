@@ -233,13 +233,13 @@ def use_time(func):
 # num_list = list(map(int, [i.strip() for i in sys.stdin.readlines()]))
 # count_prime(num_list)
 ##########################
-import sys
+# import sys
 
-a, b, c = map(int, [i.strip() for i in sys.stdin.readlines()])
-total = a * b * c
-li = [0 for i in range(10)]
-for i in str(total):
-    li[int(i)] += 1
+# a, b, c = map(int, [i.strip() for i in sys.stdin.readlines()])
+# total = a * b * c
+# li = [0 for i in range(10)]
+# for i in str(total):
+#     li[int(i)] += 1
 
-for i in li:
-    print(i)
+# for i in li:
+#     print(i)
