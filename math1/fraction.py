@@ -1,5 +1,6 @@
 import time
 from functools import wraps
+from use_time import use_time
 
 
 def use_time(func):
