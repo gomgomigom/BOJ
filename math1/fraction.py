@@ -3,16 +3,16 @@ from functools import wraps
 from use_time import use_time
 
 
-def use_time(func):
-    @wraps(func)
-    def new_func(*args, **kwargs):
-        s = time.time()
-        result = func(*args, **kwargs)
-        e = time.time()
-        print(f"{func.__name__} 소요시간: {e-s:.10f}초")
-        return result
+# def use_time(func):
+#     @wraps(func)
+#     def new_func(*args, **kwargs):
+#         s = time.time()
+#         result = func(*args, **kwargs)
+#         e = time.time()
+#         print(f"{func.__name__} 소요시간: {e-s:.10f}초")
+#         return result
 
-    return new_func
+#     return new_func
 
 
 # select_num = int(input())
