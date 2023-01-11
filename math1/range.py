@@ -151,46 +151,74 @@
 #     word = input()
 #     print(*isPalindrome(word), sep=" ")
 ############병합정렬################
-def merge_sort(li, s, e, zero, target):
-    if e - s <= 0:
-        return
-    mid = (e + s) // 2
-    merge_sort(li, s, mid, zero, target)
-    merge_sort(li, mid + 1, e, zero, target)
-    merge(li, s, mid + 1, e, zero, target)
-    return zero[0]
+# def merge_sort(li, s, e, zero, target):
+#     if e - s <= 0:
+#         return
+#     mid = (e + s) // 2
+#     merge_sort(li, s, mid, zero, target)
+#     merge_sort(li, mid + 1, e, zero, target)
+#     merge(li, s, mid + 1, e, zero, target)
+#     return zero[0]
 
 
-def merge(li, start, mid, end, zero, target):
-    merged = []
-    s, m = start, mid
-    while s < mid and m <= end:
-        if li[s] < li[m]:
-            merged.append(li[s])
-            s += 1
-        else:
-            merged.append(li[m])
-            m += 1
-    while s < mid:
-        merged.append(li[s])
-        s += 1
-    while m <= end:
-        merged.append(li[m])
-        m += 1
-    st = start
-    for i in merged:
-        li[st] = i
-        st += 1
-        zero[0] += 1
-        if zero[0] == target[0]:
-            print(i)
-    return zero[0]
+# def merge(li, start, mid, end, zero, target):
+#     merged = []
+#     s, m = start, mid
+#     while s < mid and m <= end:
+#         if li[s] < li[m]:
+#             merged.append(li[s])
+#             s += 1
+#         else:
+#             merged.append(li[m])
+#             m += 1
+#     while s < mid:
+#         merged.append(li[s])
+#         s += 1
+#     while m <= end:
+#         merged.append(li[m])
+#         m += 1
+#     st = start
+#     for i in merged:
+#         li[st] = i
+#         st += 1
+#         zero[0] += 1
+#         if zero[0] == target[0]:
+#             print(i)
+#     return zero[0]
 
 
-length, t = map(int, input().split())
-li = list(map(int, input().split()))
-k = [t]
-zero = [0]
-result = merge_sort(li, 0, length - 1, zero, target=k)
-if result < k[0]:
-    print(-1)
+# length, t = map(int, input().split())
+# li = list(map(int, input().split()))
+# k = [t]
+# zero = [0]
+# result = merge_sort(li, 0, length - 1, zero, target=k)
+# if result < k[0]:
+#     print(-1)
+##########220111####별찍기##################
+
+
+def star(n, icon):
+    if n <= 3:
+        li = [[icon, icon, icon], [icon, " ", icon], [icon, icon, icon]]
+        return li
+    else:
+        s = [[] for _ in range(n)]
+        n //= 3
+        pre = star(n, icon)
+        for i in range(n):
+            for j in range(n):
+                if pre[i][j] == icon:
+                    s[i * 3].extend([icon, icon, icon])
+                    s[i * 3 + 1].extend([icon, " ", icon])
+                    s[i * 3 + 2].extend([icon, icon, icon])
+                else:
+                    s[i * 3].extend([" ", " ", " "])
+                    s[i * 3 + 1].extend([" ", " ", " "])
+                    s[i * 3 + 2].extend([" ", " ", " "])
+        return s
+
+
+num = int(input())
+result = star(num, "*")
+for i in result:
+    print(*i, sep="")
