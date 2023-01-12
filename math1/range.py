@@ -197,28 +197,65 @@
 ##########220111####별찍기##################
 
 
-def star(n, icon):
-    if n <= 3:
-        li = [[icon, icon, icon], [icon, " ", icon], [icon, icon, icon]]
-        return li
+# def star(n, icon):
+#     if n <= 3:
+#         li = [[icon, icon, icon], [icon, " ", icon], [icon, icon, icon]]
+#         return li
+#     else:
+#         s = [[] for _ in range(n)]
+#         n //= 3
+#         pre = star(n, icon)
+#         for i in range(n):
+#             for j in range(n):
+#                 if pre[i][j] == icon:
+#                     s[i * 3].extend([icon, icon, icon])
+#                     s[i * 3 + 1].extend([icon, " ", icon])
+#                     s[i * 3 + 2].extend([icon, icon, icon])
+#                 else:
+#                     s[i * 3].extend([" ", " ", " "])
+#                     s[i * 3 + 1].extend([" ", " ", " "])
+#                     s[i * 3 + 2].extend([" ", " ", " "])
+#         return s
+
+
+# num = int(input())
+# result = star(num, "*")
+# for i in result:
+#     print(*i, sep="")
+# ####### 230112 하노이탑 ########################
+from collections import deque
+
+
+# def hanoi(num, li, start, end):
+#     print(f"{num}=========hanoi=={start}==={end}====")
+#     other = 3 - start - end
+#     if num == 0:
+#         return
+#     else:
+#         hanoi(num - 1, li, start, other)
+#         li[end].append(li[start].pop())
+#         print(start + 1, end + 1)
+#         print(li)
+#         return hanoi(num - 1, li, other, end)
+
+
+def move(li, start, end):
+    li[end].append(li[start].pop())
+    print(start + 1, end + 1)
+    print(li)
+
+
+def hanoi(num, li, start, mid, end):
+    if num == 1:
+        move(li, start, end)
     else:
-        s = [[] for _ in range(n)]
-        n //= 3
-        pre = star(n, icon)
-        for i in range(n):
-            for j in range(n):
-                if pre[i][j] == icon:
-                    s[i * 3].extend([icon, icon, icon])
-                    s[i * 3 + 1].extend([icon, " ", icon])
-                    s[i * 3 + 2].extend([icon, icon, icon])
-                else:
-                    s[i * 3].extend([" ", " ", " "])
-                    s[i * 3 + 1].extend([" ", " ", " "])
-                    s[i * 3 + 2].extend([" ", " ", " "])
-        return s
+        hanoi(num - 1, li, start, end, mid)
+        move(li, start, end)
+        hanoi(num - 1, li, mid, start, end)
 
 
 num = int(input())
-result = star(num, "*")
-for i in result:
-    print(*i, sep="")
+li = [deque([i for i in range(num, 0, -1)]), deque(), deque()]
+
+print(2**num - 1)
+hanoi(num, li, 0, 1, 2)

@@ -5,7 +5,13 @@ import time
 # time.sleep(1800)
 
 
+# class Clicker:
+
+# def continue_clicker(self, x, y, click, accel):
+
+
 def clicker(x, y, click, accel):
+    print(f"예상소요 시간 : {click/accel/9.5}초")
     bundle = 100
     count = 0
     time.sleep(6)
@@ -13,12 +19,17 @@ def clicker(x, y, click, accel):
     time.sleep(6)
     cl_start = time.time()
     for i in range(click // bundle):
-        start = time.time()
         pyautogui.click(x, y, clicks=bundle, interval=0.001)
+        # if args[0] and args[1]:
+        #     pyautogui.click(args[0], args[1], clicks=bundle, interval=0.001)
+        #     count += bundle
+        # if args[2] and args[3]:
+        #     pyautogui.click(args[2], args[3], clicks=bundle, interval=0.001)
+        #     count += bundle
         count += bundle
         time.sleep(bundle / 10 / accel)
         end = time.time()
-        print(f"{i + 1} : {end - start:5f}")
+        print(f"✨🖱️✨ 클릭:{count}번    소요시간: {end-cl_start:3f}")
     for i in range(click % bundle):
         pyautogui.click(x, y, clicks=1, interval=0.001)
     count += click % bundle
@@ -26,23 +37,22 @@ def clicker(x, y, click, accel):
     print(f"✨🖱️✨ 클릭:{count}번    소요시간: {cl_end-cl_start:3f}")
 
 
-def clicker2(x, y, x2, y2, click):
-    bundle = 1000
+def continuos_clicker(x, y, click, accel, x1, y1, x2, y2):
+    print(f"예상소요 시간 : {click * 0.0615}초")
     count = 0
     time.sleep(6)
     pyautogui.moveTo(x, y, duration=3)  # 이동하는 속도 1초 설정
     time.sleep(6)
     cl_start = time.time()
-    for i in range(click // bundle):
-        start = time.time()
-        pyautogui.click(x, y, clicks=bundle, interval=0.001)
-        pyautogui.click(x2, y2, clicks=2, interval=2)
-        time.sleep(1)
-        end = time.time()
-        print(f"{i + 1} : {end - start:5f}")
-    for i in range(click % bundle):
-        pyautogui.click(x, y, clicks=1, interval=0.001)
-    count += click % bundle
+    for _ in range(click // 3 // accel):
+        pyautogui.click(x, y, clicks=accel, interval=0.001)
+        pyautogui.click(x1, y1, clicks=accel, interval=0.001)
+        pyautogui.click(x2, y2, clicks=accel, interval=0.001)
+        count += 3 * accel
+        if count % 100 == 0:
+            cl_end = time.time()
+            print(f"✨🖱️✨ 클릭:{count}번    소요시간: {cl_end-cl_start:3f}")
+
     cl_end = time.time()
     print(f"✨🖱️✨ 클릭:{count}번    소요시간: {cl_end-cl_start:3f}")
 
@@ -91,4 +101,6 @@ def tracker():
 # fw.close()  # 현재 활성화 상태인 창 닫기
 if __name__ == "__main__":
     # tracker()
-    clicker(812, 124, 490, 1.3)
+
+    clicker(422, 516, 34500, 1.5)
+    # continuos_clicker(419, 387, 30000, 2, 330, 319, 466, 520)
