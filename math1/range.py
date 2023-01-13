@@ -223,39 +223,83 @@
 # for i in result:
 #     print(*i, sep="")
 # ####### 230112 하노이탑 ########################
-from collections import deque
+# from collections import deque
 
 
-# def hanoi(num, li, start, end):
-#     print(f"{num}=========hanoi=={start}==={end}====")
-#     other = 3 - start - end
-#     if num == 0:
-#         return
+# def move(li, start, end):
+#     li[end].append(li[start].pop())
+#     print(start + 1, end + 1)
+#     print(li)
+
+
+# def hanoi(num, li, start, mid, end):
+#     if num == 1:
+#         move(li, start, end)
 #     else:
-#         hanoi(num - 1, li, start, other)
-#         li[end].append(li[start].pop())
-#         print(start + 1, end + 1)
-#         print(li)
-#         return hanoi(num - 1, li, other, end)
+#         hanoi(num - 1, li, start, end, mid)
+#         move(li, start, end)
+#         hanoi(num - 1, li, mid, start, end)
 
 
-def move(li, start, end):
-    li[end].append(li[start].pop())
-    print(start + 1, end + 1)
-    print(li)
+# num = int(input())
+# li = [deque([i for i in range(num, 0, -1)]), deque(), deque()]
+
+# print(2**num - 1)
+# hanoi(num, li, 0, 1, 2)
+############# 230113 VPS #############
+# num = int(input())
+# for _ in range(num):
+#     a = input()
+#     long = len(a)
+#     left = a.count("(")
+#     right = a.count(")")
+#     if left != right:
+#         print("NO")
+#     else:
+#         for _ in range(len(a)):
+#             a = a.replace("()", "")
+#         if a:
+#             print("NO")
+#         else:
+#             print("YES")
+############ 체스 보드판 색칠 #########
+# import sys
+
+# def cut_board(board, N, M):
+#     col_range = M-8
+#     row_range = N-8
+#     for row in board:
+#         for j in row:
 
 
-def hanoi(num, li, start, mid, end):
-    if num == 1:
-        move(li, start, end)
-    else:
-        hanoi(num - 1, li, start, end, mid)
-        move(li, start, end)
-        hanoi(num - 1, li, mid, start, end)
+# N, M = map(int, input().split())
+# board = [i.split()[0] for i in sys.stdin.readlines()]
+# print(board)
+# for row in board:
+#     for j in row:
+#         print(j)
+########## 블랙잭 #################
+N, M = map(int, input().split())
+
+num_li = list(map(int, input().split()))
+num_li.sort()
 
 
-num = int(input())
-li = [deque([i for i in range(num, 0, -1)]), deque(), deque()]
+def find_numbers(li, M):
+    length = len(num_li)
+    temp = 0
+    for i in range(0, length):
+        for j in range(i + 1, length):
+            for k in range(j + 1, length):
+                total = li[i] + li[j] + li[k]
+                if total < M:
+                    temp = max(total, temp)
+                elif total == M:
+                    return total
+                else:
+                    break
+    return temp
 
-print(2**num - 1)
-hanoi(num, li, 0, 1, 2)
+
+print(find_numbers(num_li, M))
+#############################
