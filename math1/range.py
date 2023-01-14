@@ -262,44 +262,64 @@
 #             print("NO")
 #         else:
 #             print("YES")
-############ 체스 보드판 색칠 #########
+# ############ 체스 보드판 색칠 #########
 # import sys
 
+
+# answer1 = "BWBWBWBWWBWBWBWBBWBWBWBWWBWBWBWBBWBWBWBWWBWBWBWBBWBWBWBWWBWBWBWB"
+# answer2 = "WBWBWBWBBWBWBWBWWBWBWBWBBWBWBWBWWBWBWBWBBWBWBWBWWBWBWBWBBWBWBWBW"
+
+
 # def cut_board(board, N, M):
-#     col_range = M-8
-#     row_range = N-8
-#     for row in board:
-#         for j in row:
+#     row_range = N - 8 + 1
+#     col_range = M - 8 + 1
+#     board_str_list = []
+#     for row_index in range(row_range):
+#         new_board = board[row_index : row_index + 8]
+#         for col_index in range(col_range):
+#             board_str = ""
+#             for i in range(8):
+#                 board_str += new_board[i][col_index : col_index + 8]
+#             board_str_list.append(board_str)
+#     count_li = []
+#     for board_str in board_str_list:
+#         count1 = 0
+#         count2 = 0
+#         for i in range(64):
+#             if board_str[i] != answer1[i]:
+#                 count1 += 1
+#             if board_str[i] != answer2[i]:
+#                 count2 += 1
+#         count_li.append(count1)
+#         count_li.append(count2)
+#     print(min(count_li))
 
 
 # N, M = map(int, input().split())
 # board = [i.split()[0] for i in sys.stdin.readlines()]
-# print(board)
-# for row in board:
-#     for j in row:
-#         print(j)
-########## 블랙잭 #################
-N, M = map(int, input().split())
+# cut_board(board, N, M)
+# ########## 블랙잭 #################
+# N, M = map(int, input().split())
 
-num_li = list(map(int, input().split()))
-num_li.sort()
+# num_li = list(map(int, input().split()))
+# num_li.sort()
 
 
-def find_numbers(li, M):
-    length = len(num_li)
-    temp = 0
-    for i in range(0, length):
-        for j in range(i + 1, length):
-            for k in range(j + 1, length):
-                total = li[i] + li[j] + li[k]
-                if total < M:
-                    temp = max(total, temp)
-                elif total == M:
-                    return total
-                else:
-                    break
-    return temp
+# def find_numbers(li, M):
+#     length = len(num_li)
+#     temp = 0
+#     for i in range(0, length):
+#         for j in range(i + 1, length):
+#             for k in range(j + 1, length):
+#                 total = li[i] + li[j] + li[k]
+#                 if total < M:
+#                     temp = max(total, temp)
+#                 elif total == M:
+#                     return total
+#                 else:
+#                     break
+#     return temp
 
 
-print(find_numbers(num_li, M))
-#############################
+# print(find_numbers(num_li, M))
+# #############################

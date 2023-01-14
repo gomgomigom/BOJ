@@ -1,4 +1,4 @@
 {
   "cSpell.words": ["pyperclip"],
-  "python.linting.flake8Args": ["--ignore=F401,E265"]
+  "python.linting.flake8Args": ["--ignore=F401,E265,E203,E266"]
 }
