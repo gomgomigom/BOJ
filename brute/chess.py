@@ -47,38 +47,68 @@
 #     rank_li.append(rank)
 
 # print(*rank_li)
-########### 영화감독 숌 ############
-n = int(input())
+# ########## 영화감독 숌 ############
+# n = int(input())
 
 
-def count_six(s):
-    count = 0
-    for i in s:
-        if i == "6":
-            count += 1
-        else:
-            count = 0
-    return count
+# def count_six(s):
+#     count = 0
+#     for i in s:
+#         if i == "6":
+#             count += 1
+#         else:
+#             count = 0
+#     return count
 
 
-def create_end_num(n):
-    end_num = "666"
-    count = 1
-    for i in range(n):
-        if i % 10 == 6:
-            six_count = count_six(str(i))
-            for j in range(10**six_count):
-                n_end_num = (
-                    str(i)[:-six_count] + end_num + str(f"{j:0{six_count}}")
-                )
-                if count == n:
-                    return int(n_end_num)
-                count += 1
-        else:
-            n_end_num = str(i) + end_num
-            if count == n:
-                return int(n_end_num)
-            count += 1
+# def create_end_num(n):
+#     end_num = "666"
+#     count = 1
+#     for i in range(n):
+#         if i % 10 == 6:
+#             six_count = count_six(str(i))
+#             for j in range(10**six_count):
+#                 n_end_num = (
+#                     str(i)[:-six_count] + end_num + str(f"{j:0{six_count}}")
+#                 )
+#                 if count == n:
+#                     return int(n_end_num)
+#                 count += 1
+#         else:
+#             n_end_num = str(i) + end_num
+#             if count == n:
+#                 return int(n_end_num)
+#             count += 1
 
 
-print(create_end_num(n))
+# print(create_end_num(n))
+############ 230115 숫자 카드 ###########
+# import sys
+
+# N = int(input())
+# n_li = list(map(int, sys.stdin.readline().split()))
+# n_li.sort()
+# M = int(input())
+# m_li = list(map(int, sys.stdin.readline().split()))
+# result_list = []
+
+
+# def check_num(li, target):
+#     start = 0
+#     end = len(li) - 1
+#     while start <= end:
+#         mid = (start + end) // 2
+#         if li[mid] == target:
+#             return 1
+#         elif li[mid] > target:
+#             end = mid - 1
+#         else:
+#             start = mid + 1
+#     return 0
+
+
+# for m in m_li:
+#     result_list.append(check_num(n_li, m))
+# print(*result_list)
+########## 문자열 집합 #############
+n, m =m
