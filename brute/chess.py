@@ -82,7 +82,7 @@
 
 
 # print(create_end_num(n))
-############ 230115 숫자 카드 ###########
+########### 230115 숫자 카드 ###########
 # import sys
 
 # N = int(input())
@@ -110,5 +110,86 @@
 # for m in m_li:
 #     result_list.append(check_num(n_li, m))
 # print(*result_list)
-########## 문자열 집합 #############
-n, m =m
+########## 230116 문자열 집합 #############
+# import sys
+
+# input_li = [i.strip() for i in sys.stdin.readlines()]
+# n, m = map(int, (input_li[0].split()))
+# check_li = input_li[1 : n + 1]
+# origin_li = input_li[n + 1 :]
+# cnt = 0
+# for i in origin_li:
+#     if i in check_li:
+#         cnt += 1
+# print(cnt)
+############# 포켓몬 마스터 ############
+# import sys
+
+# n, m = map(int, input().split())
+# num_d = dict()
+# name_d = dict()
+
+# pocket_li = [
+#     (i[0], i[1].strip()) for i in enumerate(sys.stdin.readlines(), start=1)
+# ]
+# for num, item in pocket_li[:n]:
+#     num_d[str(num)] = item
+#     name_d[item] = str(num)
+
+# for _, target in pocket_li[n:]:
+#     num_d.get(target) and print(num_d.get(target))
+#     num_d.get(target) or print(name_d.get(target))
+# ########### 큐 ############
+# from collections import deque
+# import sys
+
+# n = int(input())
+# command = [i.rstrip().split() for i in sys.stdin.readlines()]
+# q = deque()
+# for i in command:
+#     if i[0] == "push":
+#         q.append(int(i[1]))
+#     elif i[0] == "front":
+#         try:
+#             f = q.popleft()
+#             print(f)
+#             q.appendleft(f)
+#         except Exception:
+#             print(-1)
+#     elif i[0] == "back":
+#         try:
+#             b = q.pop()
+#             print(b)
+#             q.append(b)
+#         except Exception:
+#             print(-1)
+#     elif i[0] == "pop":
+#         try:
+#             print(q.popleft())
+#         except Exception:
+#             print(-1)
+#     elif i[0] == "size":
+#         print(len(q))
+#     elif i[0] == "empty":
+#         q_len = len(q)
+#         if q_len:
+#             print(0)
+#         else:
+#             print(1)
+############### 숫자 카드 2 ########
+N = int(input())
+n_li = list(map(int, input().split()))
+M = int(input())
+m_li = list(map(int, input().split()))
+n_d = dict()
+for n in n_li:
+    if n_d.get(n):
+        n_d[n] = n_d.get(n) + 1
+    else:
+        n_d[n] = 1
+for m in m_li:
+    target = n_d.get(m)
+    if target:
+        print(target, end=" ")
+    else:
+        print(0, end=" ")
