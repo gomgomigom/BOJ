@@ -110,7 +110,7 @@
 # for m in m_li:
 #     result_list.append(check_num(n_li, m))
 # print(*result_list)
-########## 230116 문자열 집합 #############
+######### 230116 문자열 집합 #############
 # import sys
 
 # input_li = [i.strip() for i in sys.stdin.readlines()]
@@ -122,7 +122,7 @@
 #     if i in check_li:
 #         cnt += 1
 # print(cnt)
-############# 포켓몬 마스터 ############
+# ############ 포켓몬 마스터 ############
 # import sys
 
 # n, m = map(int, input().split())
@@ -176,20 +176,52 @@
 #             print(0)
 #         else:
 #             print(1)
-############### 숫자 카드 2 ########
-N = int(input())
-n_li = list(map(int, input().split()))
-M = int(input())
-m_li = list(map(int, input().split()))
-n_d = dict()
-for n in n_li:
-    if n_d.get(n):
-        n_d[n] = n_d.get(n) + 1
-    else:
-        n_d[n] = 1
-for m in m_li:
-    target = n_d.get(m)
-    if target:
-        print(target, end=" ")
-    else:
-        print(0, end=" ")
+# ############### 숫자 카드 2 ########
+# N = int(input())
+# n_li = list(map(int, input().split()))
+# M = int(input())
+# m_li = list(map(int, input().split()))
+# n_d = dict()
+# for n in n_li:
+#     if n_d.get(n):
+#         n_d[n] = n_d.get(n) + 1
+#     else:
+#         n_d[n] = 1
+# for m in m_li:
+#     target = n_d.get(m)
+#     if target:
+#         print(target, end=" ")
+#     else:
+#         print(0, end=" ")
+######### 230117 듣보잡 #########
+# import sys
+
+# N, M = map(int, input().split())
+
+# li = [i.strip() for i in sys.stdin.readlines()]
+# n_set = set(li[:N])
+# m_li = li[N:]
+# m_li.sort()
+# m_set = set(m_li)
+# print(len(m_set.intersection(n_set)))
+
+# for m in m_li:
+#     if m in n_set:
+#         print(m)
+########### 대칭 차집합 #############
+# A_len, B_len = map(int, input().split())
+# A_set = set(map(int, input().split()))
+# B_set = set(map(int, input().split()))
+# A_B = len(A_set - B_set)
+# B_A = len(B_set - A_set)
+# print(A_B + B_A)
+###### 서로 다른 부분 문자열의 개수 #######
+s = input()
+s_len = len(s)
+s_set = set()
+count = 0
+for i in range(s_len):
+    for j in range(i + 1, s_len + 1):
+        item = s[i:j]
+        item in s_set or s_set.add(item)
+print(len(s_set))
