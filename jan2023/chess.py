@@ -266,14 +266,14 @@
 # while (m_li[0] + m_li[1]) != MAX:
 #     m_li.rotate()
 # print(melon_per_sqmt * (m_li[0] * m_li[1] - (m_li[3] * m_li[4])))
-################ 230118 택시 기하학 ################
-# from math import pi
+############### 230118 택시 기하학 ################
+from math import pi
 
-# n = int(input())
+n = int(input())
 
-# print(f"{n**2 * pi:6f}")
-# print(f"{((n**2 * 2) ** 0.5) ** 2:6f}")
-######### 터렛 #########
+print(f"{n**2 * pi:6f}")
+print(f"{((n**2 * 2) ** 0.5) ** 2:6f}")
+######## 터렛 #########
 import sys
 
 n = int(input())
@@ -299,3 +299,85 @@ for turret in turret_li:
         print(2)
     else:
         print(0)
+########## 어린 왕자 #############
+t = int(input())
+
+
+def calculate_distance(x1, y1, x2, y2):
+    return round((abs(x2 - x1) ** 2 + abs(y2 - y1) ** 2) ** 0.5, 10)
+
+
+for _ in range(t):
+    x1, y1, x2, y2 = map(int, input().split())
+    count = 0
+    n = int(input())
+    for _ in range(n):
+        cx, cy, r = map(int, input().split())
+        star_start_dist = calculate_distance(x1, y1, cx, cy)
+        star_end_dist = calculate_distance(x2, y2, cx, cy)
+        if star_start_dist < r and star_end_dist < r:
+            continue
+        elif star_start_dist < r:
+            count += 1
+        elif star_end_dist < r:
+            count += 1
+        else:
+            continue
+    print(count)
+###### 배수와 약수 ######
+import sys
+
+case_li = [list(map(int, i.rstrip().split())) for i in sys.stdin.readlines()][
+    :-1
+]
+for case in case_li:
+    a, b = case[0], case[1]
+    if b % a == 0:
+        print("factor")
+    elif a % b == 0:
+        print("multiple")
+    else:
+        print("neither")
+##### 3n + 1 수열 ##########
+N = int(input())
+
+
+def C(n, count=0):
+    count += 1
+    if n == 1:
+        return count
+    if n % 2 == 0:
+        return C(n / 2, count)
+    else:
+        return C(n * 3 + 1, count)
+
+
+print(C(N))
+######### 약수 ###########
+n = int(input())
+num_li = list(map(int, input().split()))
+
+if n == 1:
+    print(num_li[0] ** 2)
+else:
+    print(min(num_li) * max(num_li))
+###### 최대공약수와 최소공배수 ########
+b, a = sorted(list(map(int, input().split())))
+
+
+def gcd(a, b):
+    r = a % b
+    if r == 0:
+        return b
+    else:
+        return gcd(b, r)
+
+
+def lcm(a, b, GCD):
+    return (a * b) // GCD
+
+
+GCD = gcd(a, b)
+LCM = lcm(a, b, GCD)
+print(GCD)
+print(LCM)
