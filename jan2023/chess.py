@@ -193,7 +193,7 @@
 #         print(target, end=" ")
 #     else:
 #         print(0, end=" ")
-######### 230117 듣보잡 #########
+######## 230117 듣보잡 #########
 # import sys
 
 # N, M = map(int, input().split())
@@ -208,20 +208,94 @@
 # for m in m_li:
 #     if m in n_set:
 #         print(m)
-########### 대칭 차집합 #############
+# ########## 대칭 차집합 #############
 # A_len, B_len = map(int, input().split())
 # A_set = set(map(int, input().split()))
 # B_set = set(map(int, input().split()))
 # A_B = len(A_set - B_set)
 # B_A = len(B_set - A_set)
 # print(A_B + B_A)
-###### 서로 다른 부분 문자열의 개수 #######
-s = input()
-s_len = len(s)
-s_set = set()
-count = 0
-for i in range(s_len):
-    for j in range(i + 1, s_len + 1):
-        item = s[i:j]
-        item in s_set or s_set.add(item)
-print(len(s_set))
+# ##### 서로 다른 부분 문자열의 개수 #######
+# s = input()
+# s_len = len(s)
+# s_set = set()
+# count = 0
+# for i in range(s_len):
+#     for j in range(i + 1, s_len + 1):
+#         item = s[i:j]
+#         item in s_set or s_set.add(item)
+# print(len(s_set))
+# ########## 네 번째 점 ############
+# import sys
+
+# coor1, coor2, coor3 = [
+#     [*map(int, i.rstrip().split())] for i in sys.stdin.readlines()
+# ]
+# coor_zip = list(zip(coor1, coor2, coor3))
+# for i in coor_zip:
+#     for j in i:
+#         if i.count(j) == 1:
+#             print(j, end=" ")
+# ######## 직각삼각형 #############
+# while True:
+#     test_li = list(map(int, input().split()))
+#     test_li.sort()
+#     a = test_li[0]
+#     b = test_li[1]
+#     c = test_li[2]
+#     if sum(test_li) == 0:
+#         break
+#     if a**2 + b**2 == c**2:
+#         print("right")
+#     else:
+#         print("wrong")
+# ########## 참외밭 ################
+# # 동:1, 서:2, 남:3, 북:4
+# # (┏, ┗, ┛,ㄱ)
+# from collections import deque
+
+# melon_per_sqmt = int(input())
+# m_li = deque()
+# for _ in range(6):
+#     direction, m = map(int, input().split())
+#     m_li.append(m)
+# MAX = 0
+# for _ in range(6):
+#     MAX = max(MAX, m_li[0] + m_li[1])
+#     m_li.rotate()
+# while (m_li[0] + m_li[1]) != MAX:
+#     m_li.rotate()
+# print(melon_per_sqmt * (m_li[0] * m_li[1] - (m_li[3] * m_li[4])))
+################ 230118 택시 기하학 ################
+# from math import pi
+
+# n = int(input())
+
+# print(f"{n**2 * pi:6f}")
+# print(f"{((n**2 * 2) ** 0.5) ** 2:6f}")
+######### 터렛 #########
+import sys
+
+n = int(input())
+turret_li = [list(map(int, i.rstrip().split())) for i in sys.stdin.readlines()]
+for turret in turret_li:
+    x1, y1, r1 = turret[0], turret[1], turret[2]
+    x2, y2, r2 = turret[3], turret[4], turret[5]
+
+    distance = (abs(x2 - x1) ** 2 + abs(y2 - y1) ** 2) ** 0.5
+    distance = round(distance, 10)
+    # print(distance)
+    MIN = min(r1, r2)
+    MAX = max(r1, r2)
+    delta_r = MAX - MIN
+    sum_r = r2 + r1
+    if distance == 0 and r1 == r2:
+        print(-1)
+    elif distance == delta_r:
+        print(1)
+    elif distance == sum_r:
+        print(1)
+    elif delta_r < distance < sum_r:
+        print(2)
+    else:
+        print(0)
