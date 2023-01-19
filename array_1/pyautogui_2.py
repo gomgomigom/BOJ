@@ -11,7 +11,7 @@ import time
 
 
 def clicker(x, y, click, accel):
-    print(f"예상소요 시간 : {click/accel/9.5}초")
+    print(f"예상소요 시간 : {click/accel/9.5 + 15}초")
     bundle = 100
     count = 0
     time.sleep(6)
@@ -102,5 +102,5 @@ def tracker():
 if __name__ == "__main__":
     # tracker()
 
-    clicker(422, 516, 34500, 1.5)
+    clicker(360, 340, 20000, 1.55)
     # continuos_clicker(419, 387, 30000, 2, 330, 319, 466, 520)
