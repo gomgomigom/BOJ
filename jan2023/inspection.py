@@ -90,7 +90,7 @@
 #     numerator = n_li[i]
 #     answer.append(fractional_expression(denominator, numerator))
 # print(*answer, sep="\n")
-# ######## 이항 계수 1 (11050) ##########
+######## 이항 계수 1 (11050) ##########
 # N, K = map(int, input().split())
 # denominator = 1
 # for i in range(1, N + 1):
@@ -101,6 +101,8 @@
 # for i in range(1, N - K + 1):
 #     numerator *= i
 # print(f"{((denominator // numerator) % 10007):.0f}")
+
+# ########### 230120 ###############
 # ######### 다리 놓기 (1010) ########
 # import sys
 
@@ -121,23 +123,136 @@
 
 # for site in site_li:
 #     print(f"{site[0]} {site[1]} result : {number_of_case(site[0],site[1])}")
-############### 패션왕 신해빈 (9375) ##################
-def factorial(n):
-    if n <= 1:
-        return 1
+# ############## 패션왕 신해빈 (9375) ##################
+# def factorial(n):
+#     if n <= 1:
+#         return 1
+#     else:
+#         return n * factorial(n - 1)
+
+
+# T = int(input())
+# for _ in range(T):
+#     n = int(input())
+#     d = dict()
+#     for _ in range(n):
+#         a, b = input().split()
+#         d.get(b) or d.update({b: 0})
+#         d[b] += 1
+#     total = 1
+#     for i in d.values():
+#         total *= i + 1
+#     print(total - 1)
+# ######## 팩토리얼 0의 개수 (1676) #########
+# n = int(input())
+
+
+# def factorial_new(n):
+#     last = int(str(n)[-1])
+#     if n <= 1:
+#         return 1
+
+#     elif (last % 2) == 0 or (last % 5) == 0:
+#         return n * factorial_new(n - 1)
+
+#     else:
+#         return factorial_new(n - 1)
+
+
+# result = str(factorial_new(n))
+# length = len(result)
+# cnt = 0
+# for i in range(1, length + 1):
+#     if result[-i] == "0":
+#         cnt += 1
+#     else:
+#         break
+# print(cnt)
+# ######### 조합 0의 개수 (2004) ############
+# import math
+
+# n, m = map(int, input().split())
+# five = 0
+# while n // 5**five > 1:
+#     five += 1
+# two = 0
+# while n // 2**two > 1:
+#     two += 1
+
+# five_li = [5**i for i in range(1, five + 1)]
+# two_li = [2**i for i in range(1, two + 1)]
+
+
+# def right_zero(n):
+#     five_cnt = 0
+#     two_cnt = 0
+#     for i in five_li:
+#         five_cnt += n // i
+#     for i in two_li:
+#         two_cnt += n // i
+#     return [two_cnt, five_cnt]
+
+
+# result2 = right_zero(n)[0] - right_zero(m)[0] - right_zero(n - m)[0]
+# result5 = right_zero(n)[1] - right_zero(m)[1] - right_zero(n - m)[1]
+# print(min(result2, result5))
+# ############ 노 땡스! 27159 ##########
+# N = int(input())
+# n_li = list(map(int, input().split()))
+# n_li.append(0)
+
+
+# def determine_score(li, N):
+#     score = []
+#     start = 50
+#     for i in range(N):
+#         if abs(li[i] - li[i + 1]) == 1:
+#             start = min(i, start)
+#         else:
+#             if start != 50:
+#                 score.append(li[start])
+#                 start = 50
+#             else:
+#                 score.append(li[i])
+#                 start = 50
+
+#     return score
+
+
+# print(sum(determine_score(n_li, N), 0))
+############ 230121 ##############
+########### N과M(1) 15649 #########
+# N,M = map(int, input().split())
+# N, M = [4, 3]
+
+# n_li = [i for i in range(1, N + 1)]
+# new = []
+
+
+# def select_num(n_li, m, count, s):
+#     if m == 0:
+#         m += count
+#         return
+#     else:
+#         for i in n_li:
+#             new.append(i)
+#         return select_num()
+#  make list
+########### 230122 ###########
+######### 수 찾기 1920 ##########
+# N = int(input())
+# N_set = set(map(int, input().split()))
+# M = int(input())
+# M_li = list(map(int, input().split()))
+
+
+N = 5
+N_set = set(map(int, [4, 1, 5, 2, 3]))
+M = 5
+M_li = [1, 3, 7, 9, 5]
+
+for i in M_li:
+    if i in N_set:
+        print(1, end=" ")
     else:
-        return n * factorial(n - 1)
-
-
-T = int(input())
-for _ in range(T):
-    n = int(input())
-    d = dict()
-    for _ in range(n):
-        a, b = input().split()
-        d.get(b) or d.update({b: 0})
-        d[b] += 1
-    total = 1
-    for i in d.values():
-        total *= i + 1
-    print(total - 1)
+        print(0, end=" ")
