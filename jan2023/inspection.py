@@ -1,3 +1,5 @@
+import time
+
 # ########## 검문 (2981) ##########
 # import sys
 # from functools import reduce
@@ -245,14 +247,143 @@
 # M = int(input())
 # M_li = list(map(int, input().split()))
 
+# for i in M_li:
+#     if i in N_set:
+#         print(1, end=" ")
+#     else:
+#         print(0, end=" ")
+######### 230123 #########
+########## N과M (1) 15649 #######
+# N, M = map(int, input().split())
+# N, M = 4, 3
+# s = []
+# visited = [False] * N
 
-N = 5
-N_set = set(map(int, [4, 1, 5, 2, 3]))
-M = 5
-M_li = [1, 3, 7, 9, 5]
 
-for i in M_li:
-    if i in N_set:
-        print(1, end=" ")
+# def n2m(n, m, s, visited):
+#     if len(s) == m:
+#         print(*s)
+#         return
+#     else:
+#         for i in range(N):
+#             if visited[i]:
+#                 continue
+#             else:
+#                 visited[i] = True
+#                 s.append(i + 1)
+#                 n2m(n, m, s, visited)
+#                 s.pop()
+#                 visited[i] = False
+
+
+# n2m(N, M, s, visited)
+########### 230124 ###########
+########## N과M (2) 15650 #######
+# # N, M = map(int, input().split())
+# N, M = 8, 4
+# s = []
+# visited = [False] * N
+
+
+# def n2m2(n, m, visited, s):
+#     if len(s) == m:
+#         print(*s)
+#         return
+#     else:
+#         for i in range(n):
+#             if visited[i]:
+#                 continue
+#             else:
+#                 if len(s) == 0:
+#                     visited[i] = True
+#                     s.append(i + 1)
+#                     n2m2(n, m, visited, s)
+#                     s.pop()
+#                     visited[i] = False
+
+#                 else:
+#                     if max(s) < i + 1:
+#                         visited[i] = True
+#                         s.append(i + 1)
+#                         n2m2(n, m, visited, s)
+#                         s.pop()
+#                         visited[i] = False
+
+
+# n2m2(N, M, visited, s)
+########## 230125 ###########
+######### N과M (3) 15651 #######
+# N, M = map(int, input().split())
+# N, M = 3, 3
+# s = []
+
+
+# def nm3(n, m, s):
+#     if len(s) == m:
+#         print(*s)
+#         return
+#     else:
+#         for i in range(1, n + 1):
+#             s.append(i)
+#             nm3(n, m, s)
+#             s.pop()
+
+
+# nm3(N, M, s)
+# ############# N과M(4) 15652 #############
+# N, M = map(int, input().split())
+# N, M = 3, 3
+# temp_li = []
+
+
+# def nm4(n, m, temp_li, start):
+#     if len(temp_li) == m:
+#         print(*temp_li)
+#         return
+#     else:
+#         for i in range(start, n + 1):
+#             temp_li.append(i)
+#             nm4(n, m, temp_li, i)
+#             temp_li.pop()
+
+
+# nm4(N, M, temp_li, 1)
+############# 230126 ############
+########## N-Queen 9663 ########
+
+N = 12
+# N = int(input())
+n_li = [i for i in range(1, N + 1)]
+temp_li = []
+
+
+def n_queen(n, li, temp_li, count: int):
+    if len(temp_li) == n:
+        count += 1
+        # print(temp_li)
+        return count
     else:
-        print(0, end=" ")
+        length = len(temp_li)
+        for i in li:
+            if i in temp_li:
+                continue
+            if length != 0:
+                isExist = False
+                for index, temp in enumerate(temp_li):
+                    delta = length - index
+                    if abs(temp - i) == delta:
+                        isExist = True
+                        break
+                if isExist:
+                    continue
+
+            temp_li.append(i)
+            count = n_queen(n, li, temp_li, count)
+            temp_li.pop()
+    return count
+
+
+start = time.time()
+print(n_queen(N, n_li, temp_li, 0))
+end = time.time()
+print("\033[33m" + f"{end - start}" + "\033[0m")

@@ -7,12 +7,12 @@ def use_time(func):
     def new_func(*args, **kwargs):
         s = time.time()
         s_c = time.process_time()
-        for i in range(10000):
+        for i in range(1):
             result = func(*args, **kwargs)
         e = time.time()
         e_c = time.process_time()
         print(
-            f"{func.__name__}{args} 소요시간: {e-s:.10f}초(real), {e_c-s_c:.10f}초(cpu)"
+            f"{func.__name__}{args} 1회 소요시간: {e-s:.10f}초(real), {e_c-s_c:.10f}초(cpu)"
         )
         return result
 
