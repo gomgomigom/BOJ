@@ -351,7 +351,7 @@ import time
 ############# 230126 ############
 ########## N-Queen 9663 ########
 
-N = 12
+N = 10
 # N = int(input())
 n_li = [i for i in range(1, N + 1)]
 temp_li = []

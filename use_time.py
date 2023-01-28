@@ -12,7 +12,7 @@ def use_time(func):
         e = time.time()
         e_c = time.process_time()
         print(
-            f"{func.__name__}{args} 소요시간: {e-s:.10f}초(real), {e_c-s_c:.10f}초(cpu)"
+            f"{func.__name__}{args} 10000회 소요시간: {e-s:.10f}초(real), {e_c-s_c:.10f}초(cpu)"
         )
         return result
 
