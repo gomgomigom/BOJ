@@ -323,3 +323,11 @@
 
 # print(find_numbers(num_li, M))
 # #############################
+def define_part(y, x):
+    st = x // 3 * 3
+    en = x // 3 * 3 + 3
+    row = y // 3 * 3
+    print("\033[102m\033[1m", st, en, row, "\033[0m")
+
+
+define_part(3, 8)
