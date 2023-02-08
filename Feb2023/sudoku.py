@@ -1,6 +1,3 @@
-import sys
-import time
-
 input_data = """0 3 5 4 6 9 2 7 8
 7 8 2 1 0 5 6 0 9
 0 6 0 2 7 8 1 3 5
@@ -38,40 +35,21 @@ input_data3 = """0 0 0 0 4 3 0 0 0
 4 0 0 1 0 0 0 0 0
 3 0 0 0 0 0 5 0 0"""
 input_data = input_data3.split("\n")
-# input_data = [i.rstrip() for i in sys.stdin.readlines()]
+# =============== 230202 ===============
+# =============== 스도쿠 2580 ===============
+import sys
+import time
+
+input_data = [i.rstrip() for i in sys.stdin.readlines()]
 input_data = [list(map(int, i.split())) for i in input_data]
-origin = set([1, 2, 3, 4, 5, 6, 7, 8, 9])
+# origin = set([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 
-def define_part(y, x, table):
+def define_possible(y, x, table):
     st = x // 3 * 3
     row = y // 3 * 3
-    # part = set(
-    #     [
-    #         table[row][st],
-    #         table[row][st + 1],
-    #         table[row][st + 2],
-    #         table[row + 1][st],
-    #         table[row + 1][st + 1],
-    #         table[row + 1][st + 2],
-    #         table[row + 2][st],
-    #         table[row + 2][st + 1],
-    #         table[row + 2][st + 2],
-    #     ]
-    # )
-    # col_arr = set(
-    #     [
-    #         table[0][x],
-    #         table[1][x],
-    #         table[2][x],
-    #         table[3][x],
-    #         table[4][x],
-    #         table[5][x],
-    #         table[6][x],
-    #         table[7][x],
-    #         table[8][x],
-    #     ]
-    # )
+    # part = set([table[row + i][st + j] for i in range(3) for j in range(3)])
+    # col_arr = set([table[i][x] for i in range(9)])
     # row_arr = set(table[y])
     total = set(
         [
@@ -117,7 +95,7 @@ def sudoku(table, zero_arr, index):
         sys.exit(0)
     else:
         y, x = zero_arr[index]
-        possible = define_part(y, x, table)
+        possible = define_possible(y, x, table)
         if possible:
             for num in range(1, 10):
                 if num in possible:
@@ -126,7 +104,7 @@ def sudoku(table, zero_arr, index):
                     table[y][x] = 0
 
 
-def make_zero_loc(table):
+def make_zero_arr(table):
     zero_loc_arr = []
     for y in range(9):
         for x in range(9):
@@ -135,5 +113,5 @@ def make_zero_loc(table):
     return zero_loc_arr
 
 
-zero_arr = make_zero_loc(input_data)
+zero_arr = make_zero_arr(input_data)
 sudoku(input_data, zero_arr, 0)

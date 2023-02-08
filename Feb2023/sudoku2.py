@@ -37,7 +37,16 @@ input_data3 = """0 0 0 0 4 3 0 0 0
 0 0 5 8 0 0 6 0 0
 4 0 0 1 0 0 0 0 0
 3 0 0 0 0 0 5 0 0"""
-input_data = input_data3.split("\n")
+input_data4 = """0 0 4 0 0 3 0 2 0
+0 0 8 0 1 0 0 0 0
+2 1 0 0 0 7 9 0 0
+0 0 0 0 0 9 0 0 5
+3 6 0 0 7 0 0 8 0
+0 0 1 0 0 0 0 0 0
+7 2 0 0 6 0 0 3 0
+4 0 0 0 0 0 0 0 0
+0 0 0 3 0 0 8 0 0"""
+input_data = input_data4.split("\n")
 # input_data = [i.rstrip() for i in sys.stdin.readlines()]
 input_data = [list(map(int, i.split())) for i in input_data]
 
@@ -65,7 +74,7 @@ def sudoku(table, zero_arr, y_check, x_check, part_check, index):
     if index == len(zero_arr):
         e = time.time()
         print("\033[102m\033[1m", cnt[0], "\033[0m")
-        print("\033[102m\033[1m", f"{e-s}", "\033[0m")
+        print("\033[101m\033[1m", f"{e-s}", "\033[0m")
         for i in table:
             print(*i, end="\n")
         sys.exit(0)
